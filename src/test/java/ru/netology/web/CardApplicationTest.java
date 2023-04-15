@@ -4,10 +4,12 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CardApplicationTest {
 
     private WebDriver driver;
+
 
     @BeforeAll
     static void setUpAll() {
@@ -16,7 +18,11 @@ public class CardApplicationTest {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -27,6 +33,7 @@ public class CardApplicationTest {
 
     @Test
     void testPositive() throws InterruptedException {
+
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петр Петров");
         driver.findElement(By.cssSelector("[data-test-id=phone input")).sendKeys("+79529676386");
