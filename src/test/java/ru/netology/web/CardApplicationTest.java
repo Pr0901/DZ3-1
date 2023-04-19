@@ -26,7 +26,7 @@ public class CardApplicationTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-        driver.get("http://localhost:9999/");
+        driver.get("http://localhost:9999");
     }
 
     @AfterEach
@@ -42,7 +42,8 @@ public class CardApplicationTest {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петр Петров");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79529676386");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.className("button__content")).click();
+        driver.findElement(By.cssSelector("button.button")).click();
+//        driver.findElement(By.className("button__content")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         assertEquals(expected,actual);
