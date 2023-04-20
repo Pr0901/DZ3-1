@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CardApplicationTest {
+public class PositiveCardApplicationTest {
 
     private WebDriver driver;
 
@@ -45,7 +45,7 @@ public class CardApplicationTest {
         driver.findElement(By.className("button__content")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
 
